@@ -104,12 +104,12 @@ def filter1():
 		# to a new red, green and blue components
 		if r > g:
 			if r > b:
-				r = 0
+				r = r-50
 		else:
 			if g > b:
-					b = 0
+					b = b-50
 			else:
-				g = 0
+				g = g-50
 
 		# Assign new red, green and blue components to pixel
 		newr = r
@@ -130,7 +130,7 @@ def filter1():
 #####################################
 
 def filter2():
-	print("Code for grayscale")
+	print("Code for mirror + inversion ")
 	# Creates an ImageCore Object from original image
 	pixels = img.getdata()
 	# Creates empty array to hold new pixel values
@@ -172,12 +172,12 @@ def filter2():
 		# Perform pixel manipulation and stores results
 		if r > g:
 			if r > b:
-				r = r -25
+				r = r+(255-r)//2
 		else:
 			if g > b:
-					b = b -25
+					g =  g+(255-g)//2
 			else:
-				g = g -25
+				b =  b+(255-b)//2
 
 		# to a new red, green and blue components
 
@@ -214,7 +214,7 @@ d.save("C:/Users/545537/Downloads/4-1-image-filter-project--5-days-total-/Studen
 
 # Image filter names for use below
 f1 = "weird inversion"
-f2 = "filter2"
+f2 = "mirror + inversion"
 f3 = "filter3"
 
 # Apply multiple filters through prompts with the user
