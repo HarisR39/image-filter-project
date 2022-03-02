@@ -131,8 +131,6 @@ def filter1():
 
 def filter2():
 	print("Code for mirror + inversion ")
-	x = int(input("how much do you want to mirror on a scale of 1-10: "))
-	x = x//10
 	# Creates an ImageCore Object from original image
 	pixels = img.getdata()
 	# Creates empty array to hold new pixel values
@@ -144,7 +142,7 @@ def filter2():
 	# Starts at the first pixel in the image
 	location = 0
 	# Continues until it has looped through all pixels
-	while location < len(new_pixels):
+	while location < len(new_pixels)//2:
 		# Gets the current color of the pixel at location
 		p = new_pixels[location]
 		# Splits color into red, green and blue components
@@ -164,7 +162,7 @@ def filter2():
 		# Changes the location to the next pixel in array
 		location = location + 1
 	location1 = location 
-	while location < len(new_pixels)-len(new_pixels)*x:
+	while location < len(new_pixels):
 		# Gets the current color of the pixel at location
 		p = new_pixels[location1]
 		# Splits color into red, green and blue components
