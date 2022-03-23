@@ -214,7 +214,9 @@ def filter3(n = None):
 		g = p[1]
 		b = p[2]
 # Perform pixel manipulation and stores results
-        r = 
+		r = g *2//3
+		g = b *2//3
+		b = r *2//3
 # to a new red, green and blue components
 		newr = r
 		newg = g
