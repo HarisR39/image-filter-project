@@ -11,7 +11,7 @@ from PIL import Image #from PIL import Image
 import os
 
 # Deletes old created images if they exist
-images = ["StudentWork/combinedFilters.jpg","StudentWork/filter1.jpg","StudentWork/filter2.jpg","StudentWork/filter3.jpg","StudentWork/gray.jpg"]
+images = ["C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/combinedFilters.jpg","C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter1.jpg","C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter2.jpg","C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter3.jpg","C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/gray.jpg"]
 for i in images:
 	if os.path.exists(i):
 		os.remove(i)
@@ -20,7 +20,7 @@ for i in images:
 print("\n\n")
 
 # Opens image - upload a Local File into repl.it
-img = Image.open('StudentWork/image.jpg')
+img = Image.open('C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/image.jpg')
 
 # Rescale image size down, if original is too large
 width = img.width
@@ -82,7 +82,7 @@ def gray():
 
 def filter1(x=None):
 	if not x:
-		x=2
+		x=50
 	print("Code for weird inversion")
 	# Creates an ImageCore Object from original image
 	pixels = img.getdata()
@@ -104,9 +104,14 @@ def filter1(x=None):
 		b = p[2]
 		# Perform pixel manipulation and stores results
 		# to a new red, green and blue components
-		r = g + (255 -g)//x
-		b = r + (255 -r)//x
-		g = b + (255 -b)//x
+		if r > g:
+			if r > b:
+				r = r-x
+		else:
+			if g > b:
+					b = b-x
+			else:
+				g = g-x
 
 		# Assign new red, green and blue components to pixel
 		newr = r
@@ -167,10 +172,15 @@ def filter2():
 		g = p[1]
 		b = p[2]
 		# Perform pixel manipulation and stores results
-		g = 255 - g 
-		r = 255 - r
-		b = 255 - b
-    
+		if r > g:
+			if r > b:
+				r = r+(255-r)//2
+		else:
+			if g > b:
+					g =  g+(255-g)//2
+			else:
+				b =  b+(255-b)//2
+
 		# to a new red, green and blue components
 
 		# Assign new red, green and blue components to pixel
@@ -189,11 +199,8 @@ def filter2():
 	newImage.putdata(new_pixels)
 	# Sends the newImage back to the main portion of program
 	return newImage
-
-def filter3(n = None):
-	if not n:
-		n= 30 
-	print("Code for dots")
+def filter3():
+	print("Code for filter1")
 	# Creates an ImageCore Object from original image
 	pixels = img.getdata()
 	# Creates empty array to hold new pixel values
@@ -204,6 +211,7 @@ def filter3(n = None):
 		new_pixels.append(p)
 		# Starts at the first pixel in the image
 	location = 0
+	n = int(input("How many pixels do you want to increase brightness "))
 		# Continues until it has looped through all pixels
 	while location < len(new_pixels):
 		n+=1
@@ -214,13 +222,10 @@ def filter3(n = None):
 		g = p[1]
 		b = p[2]
 # Perform pixel manipulation and stores results
-		r = g *2//3
-		g = b *2//3
-		b = r *2//3
 # to a new red, green and blue components
-		newr = r
-		newg = g
-		newb = b
+		newr = r*n
+		newg = g*n
+		newb = b*n
 #IF STATMENT - AFTER 255 RESET N=0
 # Assign new red, green and blue components to pixel
 # # at that specific location
@@ -239,18 +244,18 @@ def filter3(n = None):
 
 # Creates the four filter images and saves them to our files
 a = gray()
-a.save("StudentWork/gray.jpg")
+a.save("C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/gray.jpg")
 b = filter1()
-b.save("StudentWork/filter1.jpg")
+b.save("C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter1.jpg")
 c = filter2()
-c.save("StudentWork/filter2.jpg")
+c.save("C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter2.jpg")
 d = filter3()
-d.save("StudentWork/filter3.jpg")
+d.save("C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/filter3.jpg")
 
 # Image filter names for use below
 f1 = "weird inversion"
 f2 = "mirror + inversion"
-f3 = "dots"
+f3 = "filter3"
 
 # Apply multiple filters through prompts with the user
 print("\nThe following prompt will ask you which filter to apply to the combined filter. It will keep asking until you answer 'none'.")
@@ -266,7 +271,7 @@ while answer == "gray" or answer == f1 or answer == f2 or answer == f3:
 	elif answer == f2:
 		img = filter2()
 	elif answer == f3:
-		img = filter3(int(input("How many pixels do you want to increase brightness ")))
+		img = filter3()
 	else:
 		break
 	print("Filter \"" + answer + "\" applied...")
@@ -277,4 +282,4 @@ while answer == "gray" or answer == f1 or answer == f2 or answer == f3:
 print("Combined filter being created...Done")
 
 # Create the combined filter image and saves it to our files
-img.save("StudentWork/combinedFilters.jpg")
+img.save("C:/Users/firep/Downloads/4-1-image-filter-project--5-days-total-/StudentWork/combinedFilters.jpg")
